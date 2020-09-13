@@ -1,4 +1,4 @@
---2020-09-13 23:18:41--  http://download.geonames.org/export/dump/iso-languagecodes.txt
+--2020-09-13 23:25:57--  http://download.geonames.org/export/dump/iso-languagecodes.txt
 Resolving download.geonames.org (download.geonames.org)... 188.40.33.19
 Connecting to download.geonames.org (download.geonames.org)|188.40.33.19|:80... connected.
 HTTP request sent, awaiting response... 200 OK
@@ -7,7 +7,7 @@ Saving to: ‘iso-languagecodes.txt’
 
      0K .......... .......... .......... .......... .......... 39%  201K 0s
     50K .......... .......... .......... .......... .......... 78%  403K 0s
-   100K .......... .......... ......                          100% 93.9M=0.4s
+   100K .......... .......... ......                          100% 66.9M=0.4s
 
-2020-09-13 23:18:41 (341 KB/s) - ‘iso-languagecodes.txt’ saved [129978/129978]
+2020-09-13 23:25:58 (340 KB/s) - ‘iso-languagecodes.txt’ saved [129978/129978]
 
