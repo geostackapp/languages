@@ -2,11 +2,8 @@
 name: Update language data
 
 on:
-  workflow_run:
-    branches: [master]
-    
   schedule:
-    - cron: "*/5 * * * *"
+  - cron: "*/5 * * * *"
 
 jobs:
   update:
