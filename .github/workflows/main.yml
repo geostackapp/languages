@@ -3,7 +3,7 @@ name: Update language data
 
 on:
   schedule:
-  - cron: "*/5 * * * *"
+  - cron: "0 10 * * *"
 
 jobs:
   update:
