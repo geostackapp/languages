@@ -3,7 +3,11 @@ name: Update language data
 
 on:
   schedule:
-  - cron: "45 16 * * *"
+  - cron: "53 16 * * *"
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Add anything here'     
 
 jobs:
   update:
