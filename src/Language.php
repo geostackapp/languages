@@ -1,5 +1,6 @@
 <?php
 
+namespace GeoStack\Languages;
 
 use Illuminate\Support\Collection;
 use GeoStack\Languages\Geonames\Processor;

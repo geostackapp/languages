@@ -31,8 +31,8 @@ class Processor extends \GeoStack\Support\Geonames\Processor
         }
 
         return [
-            'code' => $data[0],
-            'name' => $data[3],
+            'code' => trim($data[0]),
+            'name' => trim($data[3]),
         ];
     }
 }
