@@ -3,7 +3,7 @@ name: Update language data
 
 on:
   schedule:
-  - cron: "53 16 * * *"
+  - cron: "0 10 * * *"
   workflow_dispatch:
     inputs:
       test:
@@ -36,8 +36,21 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-    - name: Release
+    - name: Compute Tag
+      id: computed
       if: steps.changes.outputs.changed == 1
       uses: craig-day/compute-tag@v10
       with:
         github_token: ${{ github.token }}
+        version_scheme: semantic
+        
+    - name: Release
+      if: steps.changes.outputs.changed == 1
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ steps.computed.outputs.next_tag }}
+        release_name: ${{ steps.computed.outputs.next_tag }}
+        body: >
+            Automatic release of ${{ steps.computed.outputs.next_tag }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
