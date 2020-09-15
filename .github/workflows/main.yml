@@ -3,7 +3,7 @@ name: Update language data
 
 on:
   schedule:
-  - cron: "0 10 * * *"
+  - cron: "45 16 * * *"
 
 jobs:
   update:
@@ -34,7 +34,6 @@ jobs:
       
     - name: Release
       if: steps.changes.outputs.changed == 1
-      uses: anothrNick/github-tag-action@1.17.2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WITH_V: true
+      uses: craig-day/compute-tag@v10
+      with:
+        github_token: ${{ github.token }}
