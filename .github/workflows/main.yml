@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Download file
-      run: wget http://download.geonames.org/export/dump/iso-languagecodes.txt -o data/languages.txt
+      run: wget http://download.geonames.org/export/dump/iso-languagecodes.txt -O data/languages.txt
     
     - name: Check if there are changes
       id: changes
@@ -43,7 +43,8 @@ jobs:
       with:
         github_token: ${{ github.token }}
         version_scheme: semantic
-        
+        version_type: patch
+             
     - name: Release
       if: steps.changes.outputs.changed == 1
       uses: actions/create-release@v1
