@@ -1,0 +1,57 @@
+
+name: Update language data
+
+on:
+  schedule:
+  - cron: "0 10 * * *"
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Add anything here'     
+
+jobs:
+  update:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download file
+      run: wget http://download.geonames.org/export/dump/iso-languagecodes.txt -O data/languages.txt
+    
+    - name: Check if there are changes
+      id: changes
+      uses: UnicornGlobal/has-changes-action@v1.0.11
+    
+    - name: Commit update
+      if: steps.changes.outputs.changed == 1
+      uses: EndBug/add-and-commit@v4
+      with:
+        author_name: Ashley Clarke
+        author_email: me@ashleyclarke.me
+        message: "Updated languages"
+        add: "data/languages.txt"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: Compute Tag
+      id: computed
+      if: steps.changes.outputs.changed == 1
+      uses: craig-day/compute-tag@v10
+      with:
+        github_token: ${{ github.token }}
+        version_scheme: semantic
+        version_type: patch
+             
+    - name: Release
+      if: steps.changes.outputs.changed == 1
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ steps.computed.outputs.next_tag }}
+        release_name: ${{ steps.computed.outputs.next_tag }}
+        body: >
+            Automatic release of ${{ steps.computed.outputs.next_tag }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
